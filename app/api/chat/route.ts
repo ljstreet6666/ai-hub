@@ -2,7 +2,6 @@
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 
-// Run on Node (safer for OpenAI SDK than Edge)
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
@@ -37,11 +36,9 @@ export async function POST(req: Request) {
 
     const text = completion.choices?.[0]?.message?.content ?? "";
     return NextResponse.json({ answer: text });
-  } catch (err: any) {
-    console.error(err);
-    return NextResponse.json(
-      { error: err?.message || "Server error" },
-      { status: 500 }
-    );
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : "Server error";
+    console.error(message);
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }
