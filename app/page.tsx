@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-type Panel = { provider: "openai" | "deepseek"; model?: string; answer?: string };
+type Panel = { provider: "openai" | "gemini"; model?: string; answer?: string };
 
 export default function Home() {
   const [question, setQuestion] = useState("");
