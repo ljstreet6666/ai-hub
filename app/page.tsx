@@ -8,7 +8,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [panels, setPanels] = useState<Panel[]>([
     { provider: "openai", model: "gpt-4o-mini" },
-    { provider: "gemini", model: "gemini-1.5-flash" },
+    { provider: "gemini", model: "gemini-2.5-flash" },
   ]);
 
   async function compare() {
