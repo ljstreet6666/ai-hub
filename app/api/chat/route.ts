@@ -25,7 +25,7 @@ async function callGemini(question: string, model = "gemini-1.5-flash") {
   const key = process.env.GEMINI_API_KEY;
   if (!key) throw new Error("GEMINI_API_KEY not set");
 
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`;
+  const url = `https://generativelanguage.googleapis.com/v1/models/${model}:generateContent?key=${key}`;
 
   const r = await fetch(url, {
     method: "POST",
