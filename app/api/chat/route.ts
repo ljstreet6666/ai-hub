@@ -21,7 +21,7 @@ async function callOpenAI(question: string, model = "gpt-4o-mini") {
   return completion.choices[0].message?.content ?? "";
 }
 
-async function callGemini(question: string, model = "gemini-1.5-flash") {
+async function callGemini(question: string, model = "gemini-2.5-flash") {
   const key = process.env.GEMINI_API_KEY;
   if (!key) throw new Error("GEMINI_API_KEY not set");
 
