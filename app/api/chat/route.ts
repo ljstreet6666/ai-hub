@@ -39,9 +39,14 @@ async function callGemini(question: string, model = "gemini-1.5-flash") {
   const text = await r.text();
   if (!r.ok) throw new Error(`Gemini ${r.status}: ${text}`);
 
-  const data = JSON.parse(text);
-  const answer =
-    data?.candidates?.[0]?.content?.parts?.map((p: any) => p.text).join("") ?? "";
+  const data = JSON.parse(text) as {
+    candidates?: Array<{
+      content?: { parts?: Array<{ text?: string }> };
+    }>;
+  };
+
+  const parts = data?.candidates?.[0]?.content?.parts ?? [];
+  const answer = parts.map((p) => p.text ?? "").join("");
   return answer;
 }
 
@@ -49,7 +54,7 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
-    // Your frontend sends: { question, provider, model }
+    // Frontend sends: { question, provider, model }
     const question: string = body?.question ?? "Hello";
     const provider: string = body?.provider ?? "openai";
     const model: string | undefined = body?.model;
