@@ -56,7 +56,7 @@ export default function Home() {
               className="border rounded px-2 py-1"
             >
               <option value="openai">OpenAI</option>
-              <option value="deepseek">DeepSeek</option>
+              <option value="gemini">Gemini</option>
             </select>
             <input
               className="border rounded px-2 py-1 w-44"
